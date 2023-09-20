@@ -1,0 +1,134 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Establece la altura al 100% de la ventana */
+    background: linear-gradient(to bottom left, rgb(220, 54, 54), rgb(220, 54, 54) 49%, rgb(42, 130, 218) 51%, rgb(42, 130, 218));
+}
+.background {
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: -1;
+}
+.bg{
+    height: 100%;
+    width: 100%;
+    /*background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/bg.jpg");*/
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+
+.form-box{
+    height: 480px;
+    width: 380px;
+    /*background: #2C3A41;*/
+    background: #ececec;
+    position: relative;
+    margin: 6% auto;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+
+.button-box{
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    /* box-shadow: 0 0 20px 9px rgb(100 199 199); */
+    box-shadow: 0 0 20px 9px rgb(228, 203, 95);
+    border-radius: 30px;
+}
+
+.toggle-btn{
+    padding: 10px 27px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    position: relative;
+}
+
+#btn{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right, rgb(238, 104, 15), rgb(243, 163, 13));
+    /* background: linear-gradient(to right, rgb(68,168,192), rgb(57 235 221)); */
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.social-icons{
+    margin: 30px auto;
+    text-align: center;
+}
+
+.social-icons img{
+    height: 25px;
+    margin: 0 8px;
+    box-shadow: 0 0 20px 0 #7f7f7f3d;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+.input-group{
+    top: 140px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+
+.input-field{
+    width: 100%;
+    padding:10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.submit-btn{
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, rgb(238, 104, 15), rgb(243, 163, 13));
+    /* background: linear-gradient(to right, rgb(68,168,192), rgb(57 235 221)); */
+    border: none;
+    outline: none;
+    border-radius: 30px;
+}
+
+.check-box{
+    margin: 30px 10px 30px 0;
+}
+
+.check-box span{
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
+}
+
+
+#Login{
+    left: 50px;
+}
+
+#Register{
+    left: 450px;
+}

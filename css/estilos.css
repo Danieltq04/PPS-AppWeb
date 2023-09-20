@@ -1,0 +1,337 @@
+/* ************************************************************* */
+/*                              Index                         */
+/* ************************************************************* */
+.conteiner{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.reloj {
+    background-image: url("../img/SinAguja.png");
+    position: relative; /* Cambia a posición relativa */
+    width: 50%;
+    max-width: 500px;
+    aspect-ratio: 1 / 1; /* Establece la relación de aspecto 1:1 */
+    z-index: -2;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.aguja {
+    background-image: url("../img/Aguja.png");
+    position: absolute;
+    top: 50%; /* Coloca la aguja en la mitad vertical del reloj */
+    left: 50%; /* Coloca la aguja en la mitad horizontal del reloj */
+    transform: translate(-50%, -50%); /* Centra la aguja correctamente */
+    width: 65%; /* Ajusta el ancho de la aguja al 100% */
+    aspect-ratio: 1 / 1; /* Establece la relación de aspecto 1:1 */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.text-co2{
+    position: absolute;
+    top: 77%;
+    left: 0%;
+    width: 100%;
+    color: white;
+}
+.text-co2 > p {
+    text-align: center  ;
+    font-size: 25px;
+}
+.sensores{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-direction: row;
+    width: 60%;
+    padding-top: 1em;
+    font-weight: bold;
+}
+.data{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ************************************************************* */
+/*                                                       */
+/* ************************************************************* */
+
+
+
+
+/* ************************************************************* */
+/*                         ¿QUIENES SOMOS?                       */
+/* ************************************************************* */
+
+h2, .secciones{
+    text-align: center;
+    padding: 20px 0 10px 0px;
+    /* color: rgb(130, 130, 219); */
+    font-weight: bold;
+    font-size: 30px;
+}
+
+h3{
+    text-align: center;
+    padding: 0 30px 0px 30px;
+    font-size: 20px;
+}
+
+/* ************************************************************* */
+/*                              CARDS                            */
+/* ************************************************************* */
+
+.cards{
+    display: flex;
+    justify-content: space-around; /* Para que tengan la misma separación */
+    flex-wrap: wrap; /* Para que se ajusten a distintos tipos de pantalla */
+    margin: 0 auto; /* Para que estén centrados */
+}
+.cards > div{
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out; /* Para tarde 0.3s al modificarse */
+}
+
+.caaards > diaav:hover{
+    /*box-shadow: 2px 2px 23px 2px #951ec4;*/
+    transform: scale(1.04); /* Para que se agrande un poco al pasarle el mouse */
+}
+
+
+
+
+.tarjeta{
+    display: flex;
+    align-items: flex-end;
+    font-size: 35px;
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+}
+.tarjeta>p{
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    color: white;
+    transition: all 0.5s ease-out;
+    filter: opacity(0.4);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+
+.tarjeta:hover{
+    font-size: 40px;
+    filter: opacity(0.9);
+    transform: scale(1.03);
+}
+
+.tarjeta:hover p {
+    background: rgba(0, 0, 0, 0.93);
+    font-size: 40px;
+    filter: opacity(1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+
+main{
+    margin-top: 11vh;
+}
+
+.text-carrousel{
+    position: absolute;
+    top: 10%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.text-carrousel>h5{
+    font-size: 20px;
+    padding-bottom: 3px;
+    display: none;
+}
+.text-carrousel>p{
+    font-size: 15px;
+
+}
+
+/*Vista Tablets*/
+@media (min-width: 768px){
+    
+    .conteiner-carrousel{
+        height: 100vh;
+    }
+    main{
+        margin-top: 0;
+    }
+    .text-carrousel{
+        top: 30%;
+    }
+    .text-carrousel>h5{
+        display: inline;
+        font-size: 35px;
+        padding-bottom: 10px;
+    }
+    .text-carrousel>p{
+        font-size: 20px;
+    
+    }
+    h2, .secciones{
+        padding: 30px 20px 30px 20px;
+        font-size: 35px;
+
+    }
+    h3{
+        font-size: 25px;
+    }
+    .reloj {
+        width: 30%;
+    }
+}
+
+/*Vista Computadoras*/
+@media (min-width: 1200px){
+    .reloj {
+        width: 20%;
+    }
+    h2 {
+        padding-top: 60px;
+    }
+}
+
+
+.carousel-indicators .active{
+    background-color: #44A8C0;
+}
+.hovercolor:hover{
+    background-color: #44A8C0;
+}
+
+
+
+.carousel-indicators{
+    background-color: rgb(0 0 0 / 50%);
+}
+
+
+
+/* ************************************************************* */
+/*                              CARDS                            */
+/* ************************************************************* */
+
+.seccion-interes{
+    display: flex;
+    justify-content: space-around; /* Para que tengan la misma separación */
+    flex-wrap: wrap; /* Para que se ajusten a distintos tipos de pantalla */
+    margin: 0 auto; /* Para que estén centrados */
+}
+.seccion-interes > div{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.seccion-informativa{
+    display: flex;
+    /* padding: 10px 90px 10px 90px; */
+    align-items: center;
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+    /* background-color: teal; */
+    background-image: url("../gifs/Ajaxloader.gif");
+    position: relative;
+}
+.seccion-informativa>p{
+    width: 100%;
+    text-align: center;
+    padding: 10px 45px 10px 45px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+.imagen-seccion{
+    background-color: #44A8C0;
+    position: absolute;
+    width: 65%;
+    height: 65%;
+    z-index: -2;
+    top: 35px;
+    right: 35px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parte-oscura{
+    background: rgba(0, 0, 0, 0.4);
+    width: 65%;
+    height: 65%;
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    border-radius: 50%;
+    z-index: -1;
+    transform: scale(1);
+    transition: all 0.5s ease-out;
+
+}
+/* .seccion-informativa:hover .parte-oscura{
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 0.5s ease-out;
+    transform: scale(1);
+
+} */
+.seccion-informativa:hover .parte-oscura{
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 0.5s ease-out;
+    transform: scale(1);
+
+}
+
+
+@media (min-width: 768px){
+    body> header{
+        /*background-color:  rgba(233, 153, 171, 0.4);*/
+        background-color:  rgba(87, 177, 199, 0.4);
+        align-items: center;
+
+    }
+    .seccion-interes > div{
+        width: 400px;
+        height: 400px;
+    }
+    .seccion-informativa>p{
+        padding: 10px 90px 10px 90px;
+        font-size: 25px;
+    }
+    .imagen-seccion{
+        top: 70px;
+        right: 70px;
+    }
+    .parte-oscura{
+        top: 70px;
+        right: 70px;
+    }
+}
+
+
+.form-configuration{
+    display: flex;
+    flex-direction: column;
+}
