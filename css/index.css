@@ -1,0 +1,442 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* ************************************************************* */
+/*                              HEADER                           */
+/* ************************************************************* */
+
+body { 
+    overflow-x: hidden;
+}
+#logo{
+    height: 50px;
+    /* width: 90px; */
+    padding-left: 10px;
+    align-self: center;
+    cursor: pointer;
+}
+#logo a{
+    padding: 0;
+}
+.nav-bar{
+    /*background-color: pink ;*/
+    padding: 14px 20px 0 20px;
+    display: block;
+    cursor: pointer;
+    font-size: 1.5em;
+    width: 100%;
+    height: 100%;
+}
+.menu{
+    list-style:none;
+    padding:0;
+    margin:0;
+    
+}
+.menu{
+    width: 100%;
+    margin-left: 100%;
+    transition: all 0.5s;
+}
+.menu__link{
+    display: block;
+    /*padding: 20px;*/
+    padding: 20px 8px 20px 8px;
+    color:white;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+.menu__item:hover{
+    /*background: rgb(216, 147, 216);*/
+    background: rgb(1, 56, 56);
+    transition: all 0.8s;
+
+}
+a:hover{
+    color: rgb(255, 255, 255);
+
+}
+.menu__link:active{
+    color: white;
+}
+.mostrar{
+    margin-left: 0;
+    z-index: 3;
+    background-color: #44A8C0;
+}
+.conteiner-carrousel{
+    height: 45vh;
+}
+
+body> header{
+    display: flex;
+    justify-content: space-between;
+    height: 11vh;
+    /* Agregado */
+    
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.3s ease-in-out;
+    /*background-color:  rgba(233, 153, 171);*/
+    /* background-color:  rgb(85 244 45 / 40%); */
+    background-color:  rgb(103 199 122) !important;
+    /*background: transparent*/
+}
+
+
+
+/* **************************** AGREGADO ******************************** */
+
+  /*
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  header ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+  }
+  */
+  body> header a {
+    text-decoration: none;
+    padding: 7px 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+body> header.active {
+    /*background-color: pink;*/
+    background-color:  #4cbd97;
+
+    box-shadow: 0 2px 10px rgba(202, 104, 161, 0.3);
+}
+
+/*
+header.active a {
+    color: #000;
+}
+*/
+body> header.active .container {
+    padding: 10px 0;
+}
+/*
+header a.current, header a:hover {
+    color: #2b84c0;
+    font-weight: bold;
+}
+
+*/
+
+.close{
+    border: none;
+    background-color: #fff;
+}
+/* **************************** FIN AGREGADO ******************************** */
+
+
+
+
+/* ************************************************************* */
+/*                              LOGGED                           */
+/* ************************************************************* */
+
+.logged-user {
+    position: relative;
+    text-decoration: none;
+  }
+/*
+.logged-user:hover {
+}
+*/
+.logged-user::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(146, 27, 120);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.logged-user:hover::before {
+    transform: scaleX(1);
+}
+
+
+
+
+/* ************************************************************* */
+/*                              FOOTER                           */
+/* ************************************************************* */
+
+
+
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* El pie de página se fija en la parte inferior de la página. */
+
+body> footer {
+    position: fixed;
+    bottom: 0;
+    min-height: 15vh;
+}
+
+
+@media (max-height:800px) {
+    body> footer {
+        position: static;
+    }
+}
+
+.footer-distributed {
+    background-color: #e9e2ca;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 50px 50px 60px 50px;
+    margin-top: 80px;
+}
+
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+    width: 30%;
+}
+
+.footer-distributed h3 {
+    color: #ffffff;
+    font: normal 36px 'Cookie', cursive;
+    margin: 0;
+}
+
+
+
+.footer-distributed h3 span {
+    color: #dd7d0f;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+    color: #ffffff;
+    margin: 20px 0 12px;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+    color: #8f9296;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 20px;
+}
+
+/* Footer Central */
+
+.footer-distributed .footer-center {
+    width: 37%;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    color: #ffffff;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color: #a8cf99;
+    text-decoration: none;
+    ;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+    width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a:hover {
+    background-color: #53913b;
+}
+
+.footer-links a:hover {
+    color: #53913b;
+}
+
+@media (max-width: 880px) {
+    .footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+}       
+        
+
+
+
+
+/*Vista Tablets*/
+@media (min-width: 768px){
+    .nav-bar{
+        display:none;
+    }
+    .menu{
+        margin-left:0;
+        display:flex;
+        
+    }
+    body> header{
+        /*background-color:  rgba(233, 153, 171, 0.4);*/
+        align-items: center;
+
+    }
+}
+
+/*Vista Computadoras*/
+@media (min-width: 1200px){
+
+}
+
+
+
+body{
+    background-color: rgb(240 240 240);
+    background-color: rgb(142, 128, 128);
+}
+#perfilModal .modal-header{
+    background-color:  #44A8C0;
+
+}
+#perfilModal .modal-header .close{
+    background-color:  #44A8C0;
+
+}
+
+
+/* Modal Config */
+#modal-body-config {
+    display: flex;
+    flex-direction: column;
+}
+.config_co2, .config_ozono, .config_minutos {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+}
+
+
+
+
+.detener_cuando {
+    padding: 20px 0 10px 0;
+}
+
+.form-control {
+    width: 3em;
+    padding: 0;
+    text-align: center;
+}
+
+#tb-CO2, #tb-ozono, #tb-minutos {
+    padding: 0 13px 0 13px;
+}
+
+/* Fin Modal Config */
