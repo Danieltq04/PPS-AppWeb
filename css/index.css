@@ -68,9 +68,6 @@ a:hover{
     z-index: 3;
     background-color: #44A8C0;
 }
-.conteiner-carrousel{
-    height: 45vh;
-}
 
 body> header{
     display: flex;
@@ -85,9 +82,7 @@ body> header{
     left: 0;
     right: 0;
     transition: all 0.3s ease-in-out;
-    /*background-color:  rgba(233, 153, 171);*/
-    /* background-color:  rgb(85 244 45 / 40%); */
-    background-color:  rgb(103 199 122) !important;
+    background-color:  rgb(27 29 33) !important;
     /*background: transparent*/
 }
 
@@ -119,7 +114,7 @@ body> header{
 
 body> header.active {
     /*background-color: pink;*/
-    background-color:  #4cbd97;
+    background-color:  rgb(75 75 75);
 
     box-shadow: 0 2px 10px rgba(202, 104, 161, 0.3);
 }
@@ -198,9 +193,12 @@ body {
 /* El pie de página se fija en la parte inferior de la página. */
 
 body> footer {
+    margin-top: 20px;
     position: fixed;
     bottom: 0;
     min-height: 15vh;
+    background-color:  rgb(27 29 33);
+
 }
 
 
@@ -398,8 +396,8 @@ body> footer {
 
 
 body{
-    background-color: rgb(240 240 240);
-    background-color: rgb(142, 128, 128);
+    /* background-color: rgb(240 240 240); */
+    background-color: rgb(210 206 206)
 }
 #perfilModal .modal-header{
     background-color:  #44A8C0;
@@ -439,4 +437,4 @@ body{
     padding: 0 13px 0 13px;
 }
 
-/* Fin Modal Config */
+

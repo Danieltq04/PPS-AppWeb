@@ -1,9 +1,8 @@
+/* Variables User Profile*/
 const ingresar = document.querySelector(".ingresar");
 const logueado = document.querySelector(".logueado");
 const loggedUser = document.getElementById("logged-user1");
 const modalContent = document.getElementById("modal-body");
-
-
 
 /* Variables App*/
 
@@ -54,10 +53,17 @@ const inputBaseMinutos = document.getElementById('base_minutos');
 
 let btnPower;
 let btnPowerExtractor;
-// let btnPower = document.getElementById('btn_power');
 
 
 
+/* ************************************************************* */
+/*                          SCRIPT FIREBASE                      */
+/* ************************************************************* */
+
+//Variables de referencia de escucha de cambios en el user, Application y Device
+let refUser = null;
+let refApp = null;
+let refDev = null;
 
 
 const firebaseConfig = {
@@ -69,6 +75,7 @@ const firebaseConfig = {
   messagingSenderId: "254335785667",
   appId: "1:254335785667:web:dd27bad275cb2ddeb76076"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
@@ -88,6 +95,7 @@ logout.addEventListener("click", (e) => {
 });
 
 
+
 window.addEventListener("load", () => {
   //console.log("Funcionó el onload");
   let saveUserStorage = JSON.parse(sessionStorage.getItem("userSave"));
@@ -101,14 +109,12 @@ window.addEventListener("load", () => {
             <p>${saveUserStorage.username}</p>
             <p>${saveUserStorage.email}</p>
     `
-
   } else {
     ingresar.style.display = "block";
     logueado.style.display = "none";
     logueado.classList.remove("loggerprint");
     window.location.href = "../html/login.html";
   }
-  //console.log(saveUserStorage);
 });
 
 
@@ -126,27 +132,28 @@ const loginCheck = (user) => {
     console.log("El usuario no está logueado")
   }
 };
-let refUser = null;
-let refApp = null;
-let refDev = null;
-
 
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("signin");
     console.log(user);
+
+    // Escuchar cambios en /Username
     refUser = database.ref(user.uid + "/Username");
     refUser.on('value', (snapshot) => {
       const valor = snapshot.val();
       console.log(valor);
 
+    }, (error) => {
+      console.error("Error al escuchar cambios en 'Username':", error);
     });
+
+    // Escuchar cambios en /Application
     refApp = database.ref(user.uid + "/Application");
     refApp.on('value', (snapshot) => {
       const valor = snapshot.val();
       console.log(valor);
       var partes = valor.split("-");
-
       var var1 = partes[0];
       var var2 = partes[1];
       var var3 = partes[2];
@@ -161,6 +168,8 @@ auth.onAuthStateChanged((user) => {
     }, (error) => {
       console.error("Error al escuchar cambios en 'Application':", error);
     });
+
+    // Escuchar cambios en /Device
     refDev = database.ref(user.uid + "/Device");
     refDev.on('value', (snapshot) => {
       const valor = snapshot.val();
@@ -174,34 +183,22 @@ auth.onAuthStateChanged((user) => {
       var var5 = partes[4];
       var var6 = partes[5];
       CargarDatosDelDevice(var1, var2, var3, var4, var5, var6);
-
-
+    }, (error) => {
+      console.error("Error al escuchar cambios en 'Device':", error);
     });
-    // const referencia = database.ref(user.uid /*+ "/Username"*/);
 
-    // referencia.on('value', (snapshot) => {
-    //   const valor = snapshot.val();
-    //   // Hacer algo con el valor leído
-    //   console.log(valor);
-    //   console.log(user);
-    //   // debugger;
-    //   loginCheck(user);
-
-    // });
 
   } else {
     console.log("signout");
-    //setupPosts([]);
     loginCheck(user);
     window.location.href = "../index.html";
-
   }
 });
 
 
-/* ***************************************************************************** */
-
-
+/* ************************************************************* */
+/*                              Navbar                           */
+/* ************************************************************* */
 
 const btnMenu = document.querySelector("#btnMenu");
 const menu = document.querySelector("#menu");
@@ -224,12 +221,9 @@ function fixNav() {
 
 
 
-/*  ********************************************** INDEX ************************************************/
-
-
-
-
-
+/* ************************************************************* */
+/*                               MAIN                            */
+/* ************************************************************* */
 
 function CargarDatosDeApplication(_estado_sanitizante, _base_co2, _base_ozono, _base_minutos,
   _estado_detener, _detener_por_co2, _detener_por_ozono, _detener_por_minutos, _estado_extractor) {
@@ -424,12 +418,12 @@ function CargarDatosDelDevice(_co2, _ozono_liberado, _minutos_encendido, _monoxi
 
 
   /********** Rotación aguja ************/
+  // const rotacion = (((220 + 45) * co2) / 400) - 45;
+  // divAguja.style.transform = `rotate(${rotacion}deg)`;
+
+  //Hacer una validación de si es menor a 500 solamente, sinó debería alertar
   const rotacion = (((220 + 45) * co2) / 400) - 45;
-  divAguja.style.transform = `rotate(${rotacion}deg)`;
-
-
-
-
+  divAguja.style.transform = `translate(-50%, -50%) rotate(${rotacion}deg)`
   /* Datos de apagado automático */
 
   if (estado_sanitizante == "Activado" && estado_detener == "1") {
@@ -481,9 +475,6 @@ function CargarDatosDelDevice(_co2, _ozono_liberado, _minutos_encendido, _monoxi
 
 }
 
-// btnPower.addEventListener("click", (e) => {
-//   power();
-// });
 
 
 function power() {
@@ -693,48 +684,34 @@ configurationForm.addEventListener("click", (e) => {
   base_minutos = document.getElementById('base_minutos').value;
 
   // Luego puedes hacer lo que quieras con estos valores
-  console.log('Nivel de Cpnfig es (Checkbox):', estado_detener);
-  console.log('Nivel de CO2 es (Checkbox):', detener_por_co2);
-  console.log('Nivel de CO2:', base_co2);
-  console.log('Ozono liberado es (Checkbox):', detener_por_ozono);
-  console.log('Ozono liberado:', base_ozono);
-  console.log('Transcurren minutos (Checkbox):', detener_por_minutos);
-  console.log('Minutos:', base_minutos);
+  // console.log('Nivel de Cpnfig es (Checkbox):', estado_detener);
+  // console.log('Nivel de CO2 es (Checkbox):', detener_por_co2);
+  // console.log('Nivel de CO2:', base_co2);
+  // console.log('Ozono liberado es (Checkbox):', detener_por_ozono);
+  // console.log('Ozono liberado:', base_ozono);
+  // console.log('Transcurren minutos (Checkbox):', detener_por_minutos);
+  // console.log('Minutos:', base_minutos);
 
-
-
-  let saveUserStorage = JSON.parse(sessionStorage.getItem("userSave"));
-  console.log(refDev)
-  console.log(saveUserStorage)
-
-  // const refDev = database.ref(saveUserStorage.id + '/Device');
-
-  // let datosAEnviar = '185-10-1-40-41-42';
-
-  /*
-              nuevo_estado+"-" +base_co2+"-"+base_ozono+"-"+base_minutos+
-                      "-"+estado_detener+"-"+detener_por_co2+"-"+detener_por_ozono
-                      +"-"+detener_por_minutos+"-"+estado_extractor)
-              .addOnCompleteListener(new OnCompleteListener<Void>() {
-
-  */
   let datosAEnviar = '';
   if (estado_detener && !detener_por_co2 && !detener_por_ozono && !detener_por_minutos) {
-    console.log("Para activar la detención automática debe activar alguna opción para su detenimiento.")
+    console.log("Para activar la detención automática debe activar alguna opción para su detenimiento.");
+    createToast("success", "Para activar la detención automática debe activar alguna opción para su detenimiento.")
   } else {
     datosAEnviar = estado_sanitizante + "-" + base_co2 + "-" + base_ozono + "-" + base_minutos +
       "-" + estado_detener + "-" + detener_por_co2 + "-" + detener_por_ozono + "-" + detener_por_minutos +
       "-" + estado_extractor;
-  }
 
-  console.log(datosAEnviar)
-  // refDev.set(datosAEnviar)
-  //     .then(() => {
-  //         console.log('Datos enviados con éxito a Firebase Realtime Database');
-  //     })
-  //     .catch((error) => {
-  //         console.error('Error al enviar datos a Firebase:', error);
-  //     });
+      console.log(datosAEnviar)
+      // refDev.set(datosAEnviar)
+      //     .then(() => {
+      //         console.log('Datos enviados con éxito a Firebase Realtime Database');
+      //     })
+      //     .catch((error) => {
+      //         console.error('Error al enviar datos a Firebase:', error);
+      //     });
+    
+    
+  }
 
 
 });

@@ -1,30 +1,28 @@
-
 var x = document.getElementById("Login");
 var y = document.getElementById("Register");
 var z = document.getElementById("btn");
 const socialIcons = document.querySelector(".social-icons");
 const inputGroup = document.querySelector(".input-group");
 
-function Register(){
-    x.style.left = "-400px";
-    y.style.left = "50px";
-    z.style.left = "110px";
-    
-    socialIcons.style.display = "none";
+function Register() {
+  x.style.left = "-400px";
+  y.style.left = "50px";
+  z.style.left = "110px";
+
+  socialIcons.style.display = "none";
 }
 
-function Login(){
-    x.style.left = "50px";
-    y.style.left = "450px";
-    z.style.left = "0";
-    socialIcons.style.display = "block";
+function Login() {
+  x.style.left = "50px";
+  y.style.left = "450px";
+  z.style.left = "0";
+  socialIcons.style.display = "block";
 
 }
 
 /* ************************************************************* */
 /*                          SCRIPT FIREBASE                      */
 /* ************************************************************* */
-// Your web app's Firebase configuration
 
 const firebaseConfig = {
   apiKey: "AIzaSyD-vYQZydNHc1uzqoEPBwdUNOh8jtI-K1s",
@@ -62,28 +60,28 @@ const loginCheck = (user) => {
 // list for auth state changes
 /* se dispara cuando se loguea o se desloguea */
 auth.onAuthStateChanged((user) => {
-    if (user) {
-      console.log("signin");
+  if (user) {
+    console.log("signin");
 
-      const referencia = database.ref(user.uid /*+ "/Username"*/);
+    const referencia = database.ref(user.uid /*+ "/Username"*/ );
 
-      referencia.on('value', (snapshot) => {
-        const valor = snapshot.val();
-        // Hacer algo con el valor leído
-        console.log(valor);
-        console.log(user);
-        // debugger;
-        saveUserStorage(valor.Username, user.email, user.uid)
-        loginCheck(user);
-
-      });
-
-    } else {
-      console.log("signout");
-      //setupPosts([]);
+    referencia.on('value', (snapshot) => {
+      const valor = snapshot.val();
+      // Hacer algo con el valor leído
+      console.log(valor);
+      console.log(user);
+      // debugger;
+      saveUserStorage(valor.Username, user.email, user.uid)
       loginCheck(user);
-    }
-  });
+
+    });
+
+  } else {
+    console.log("signout");
+    //setupPosts([]);
+    loginCheck(user);
+  }
+});
 /* ************************************************************* */
 /*                            SIGN UP                            */
 /* ************************************************************* */
@@ -111,19 +109,19 @@ signUpForm.addEventListener("submit", (e) => {
       //saveUserStorage(username, telephone, email,"usuario",userCredential.user.uid)
 
       console.log(userCredential.user.uid)
-      
+
       database.ref(userCredential.user.uid).set({
-        Application: "Desactivado-184-30-5-1-1-0-0-0",
-        Device: "181-10-1-40-41-42",
-        Username: username
-      })
+          Application: "Desactivado-184-30-5-1-1-0-0-0",
+          Device: "181-10-1-40-41-42",
+          Username: username
+        })
         .then(() => {
           console.log('Registro agregado con éxito.');
         })
         .catch((error) => {
           console.error('Error al agregar el registro:', error);
         });
-      
+
 
     });
 });
@@ -165,7 +163,7 @@ signInForm.addEventListener("submit", (e) => {
     //signInForm.reset();
     // close the modal
     //$("#signinModal").modal("hide");
-    
+
   });
 });
 
@@ -185,37 +183,37 @@ googleButton.addEventListener("click", (e) => {
 
   const provider = new firebase.auth.GoogleAuthProvider();
   auth.signInWithPopup(provider).then((result) => {
-    /*console.log(result.user);
-    console.log(result.user.uid);
-    console.log((result.user.displayName.split(" "))[0]);
-    console.log(result.user.displayName);
-    console.log(result.user.phoneNumber);
-    console.log(result.user.email);*/
-    console.log("google sign in, redirect");
-    //window.location.href = "./Curso1.html";
+      /*console.log(result.user);
+      console.log(result.user.uid);
+      console.log((result.user.displayName.split(" "))[0]);
+      console.log(result.user.displayName);
+      console.log(result.user.phoneNumber);
+      console.log(result.user.email);*/
+      console.log("google sign in, redirect");
+      //window.location.href = "./Curso1.html";
 
-    // saveUserStorage((result.user.displayName.split(" "))[0],
-    // (result.user.phoneNumber)? result.user.phoneNumber: "",
-    // result.user.email,"usuario",result.user.uid)
+      // saveUserStorage((result.user.displayName.split(" "))[0],
+      // (result.user.phoneNumber)? result.user.phoneNumber: "",
+      // result.user.email,"usuario",result.user.uid)
 
-    
-    fs.collection("usuarios").doc(result.user.uid).set({
-        username: (result.user.displayName.split(" "))[0],
-        telefono: (result.user.phoneNumber)? result.user.phoneNumber: "",
-        email: result.user.email,
-        rol: "usuario",
-        id: result.user.uid
+
+      fs.collection("usuarios").doc(result.user.uid).set({
+          username: (result.user.displayName.split(" "))[0],
+          telefono: (result.user.phoneNumber) ? result.user.phoneNumber : "",
+          email: result.user.email,
+          rol: "usuario",
+          id: result.user.uid
+        })
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
     })
-    .then(() => {
-        console.log("Document successfully written!");
+    .catch(err => {
+      console.log(err);
     })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-  })
-  .catch(err => {
-    console.log(err);
-  })
 });
 
 /* ************************************************************* */
@@ -232,38 +230,38 @@ facebookButton.addEventListener('click', e => {
 
   const provider = new firebase.auth.FacebookAuthProvider();
   auth.signInWithPopup(provider).then((result) => {
-    /*console.log(result);
-    console.log(result.user);
-    console.log(result.user.uid);
-    console.log((result.user.displayName.split(" "))[0]);
-    console.log(result.user.displayName);
-    console.log(result.user.phoneNumber);
-    console.log(result.user.email);*/
-    console.log("facebook sign in");
+      /*console.log(result);
+      console.log(result.user);
+      console.log(result.user.uid);
+      console.log((result.user.displayName.split(" "))[0]);
+      console.log(result.user.displayName);
+      console.log(result.user.phoneNumber);
+      console.log(result.user.email);*/
+      console.log("facebook sign in");
 
 
-    // saveUserStorage((result.user.displayName.split(" "))[0],
-    // (result.user.phoneNumber)? result.user.phoneNumber: "",
-    // result.user.email,"usuario",result.user.uid)
+      // saveUserStorage((result.user.displayName.split(" "))[0],
+      // (result.user.phoneNumber)? result.user.phoneNumber: "",
+      // result.user.email,"usuario",result.user.uid)
 
 
-    fs.collection("usuarios").doc(result.user.uid).set({
-        username: (result.user.displayName.split(" "))[0],
-        telefono: (result.user.phoneNumber)? result.user.phoneNumber: "",
-        email: result.user.email,
-        rol: "usuario",
-        id: result.user.uid
+      fs.collection("usuarios").doc(result.user.uid).set({
+          username: (result.user.displayName.split(" "))[0],
+          telefono: (result.user.phoneNumber) ? result.user.phoneNumber : "",
+          email: result.user.email,
+          rol: "usuario",
+          id: result.user.uid
+        })
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
     })
-    .then(() => {
-        console.log("Document successfully written!");
+    .catch(err => {
+      console.log(err);
     })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-  })
-  .catch(err => {
-    console.log(err);
-  })
 
 })
 
@@ -271,23 +269,23 @@ facebookButton.addEventListener('click', e => {
 
 
 
-function saveUserStorage(_username,_email, _id){
+function saveUserStorage(_username, _email, _id) {
   debugger
-    sessionStorage.setItem('userSave', 
-        JSON.stringify({
-            username: _username,
-            email: _email,
-            id: _id
-        }
-        )
-    );
+  sessionStorage.setItem('userSave',
+    JSON.stringify({
+      username: _username,
+      email: _email,
+      id: _id
+    })
+  );
 }
 
-function getUserStorage(){
-    return JSON.parse(sessionStorage.getItem('userSave'));
+function getUserStorage() {
+  return JSON.parse(sessionStorage.getItem('userSave'));
 }
-function removeUserStorage(){
-    sessionStorage.removeItem('userSave');
+
+function removeUserStorage() {
+  sessionStorage.removeItem('userSave');
 }
 
 
