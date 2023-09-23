@@ -42,7 +42,9 @@ header{
 
 .contact-form {
     /* background-color: #1abc9c; */
-    background-color: #44A8C0;
+    /* background-color: #44A8C0; */
+    background-color:  rgb(27 29 33);
+
     position: relative;
 }
 
@@ -52,7 +54,9 @@ header{
     width: 26px;
     height: 26px;
     /* background-color: #1abc9c; */
-    background-color: #44A8C0;
+    /* background-color: #44A8C0; */
+    /* background-color:  #416edd; */
+    background-color: var(--info);
     transform: rotate(45deg);
     top: 50px;
     left: -13px;
@@ -81,7 +85,8 @@ form {
 .input {
     width: 100%;
     outline: none;
-    border: 2px solid #fafafa;
+    /* border: 2px solid #fafafa; */
+    border: 2px solid var(--info);
     background: none;
     padding: 0.6rem 1.2rem;
     color: #fff;
@@ -125,13 +130,15 @@ textarea.input {
     border: 2px solid #fafafa;
     font-size: 0.95rem;
     /* color: #1abc9c; */
-    color: #44A8C0;
+    /* color: #44A8C0; */
+    color: var(--info);
     line-height: 1;
     border-radius: 25px;
     outline: none;
     cursor: pointer;
     transition: 0.3s;
     margin: 0;
+    font-weight: 500;
 }
 
 .btn:hover {
@@ -160,7 +167,9 @@ textarea.input {
     transition: 0.3s;
     height: 5px;
     /* background-color: #1abc9c; */
-    background-color: #44A8C0;
+    /* background-color: #44A8C0; */
+    background-color:  rgb(27 29 33);
+
     top: 50%;
     transform: translateY(-50%);
 }
@@ -193,7 +202,8 @@ textarea.input {
 
 .contact-info .title {
     /* color: #1abc9c; */
-    color: #44A8C0;
+    /* color: #44A8C0; */
+    color: var(--info);
 }
 
 .text {
@@ -233,7 +243,8 @@ textarea.input {
     border-radius: 5px;
     /* background: linear-gradient(45deg, #1abc9c, #149279); */
     /* background: linear-gradient(45deg, #1abc9c, #149279); */
-    background: linear-gradient(45deg, #44A8C0, rgb(34, 143, 134));
+    background: linear-gradient(45deg, var(--info), rgb(95, 162, 233));
+    /* background: linear-gradient(45deg, rgb(27 29 33), rgb(101, 101, 102)); */
     color: #fff;
     text-align: center;
     line-height: 35px;

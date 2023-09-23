@@ -296,31 +296,3 @@ main{
     }
 }
 
-
-.form-configuration{
-    display: flex;
-    flex-direction: column;
-}
-
-
-.automatizacion > div > label {
-    font-weight: 500;
-}
-.automatizacion > label{
-    font-weight: 500;
-    padding: 10px 0 10px 0;
-
-}
-#modal-body-extractor{
-    /* min-height: 70vh; */
-    max-height: 60vh;
-    background-image: url("./img/extractor-removebg-preview.png");
-    display: flex;
-        align-items: center;
-    justify-content: center;
-
-}
-#modal-body-extractor >img{
-    width: 60%;
-}
-
