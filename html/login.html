@@ -8,15 +8,29 @@
     <title>Autenticación</title>
     <link rel="shortcut icon" href="../img/Koz-logo.png">
     <link rel="stylesheet" href="../css/sweetAlert2/sweetalert2.min.css">
+
+      <!-- TOAST -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/toast.css">
+
     <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
+    <ul class="notifications">
+    </ul> 
+  
     <div class="hola">
+        <img class="background" src="../img/ozonizar.png" alt="">
+        <div class="overlay"></div>
+        <img class="overlay-image" src="../img/4907157.jpg" alt="">
         <!-- <video class="background" muted autoplay loop src="/video bg/pexels-andrew-kota-6234309.mp4"/> -->
     </div>
     <div class="bg">
         <div class="form-box">
+            <div class="bienvenido">
+                <label for="bienvenido">Bienvenido</label>
+            </div>
             <div class="button-box">
                 <div id="btn"></div>
                 <button type="button" class="toggle-btn" onclick="Login()">Ingresar</button>
@@ -28,12 +42,12 @@
             <form id="Login" class="input-group">
                 <input id="login-email" type="text" class="input-field" placeholder="Correo electrónico" required>
                 <input id="login-password" type="password" class="input-field" placeholder="Contraseña" required>
-                <input type="checkbox" class="check-box"><span>Recordar contraseña</span>
+                <!-- <input type="checkbox" class="check-box"><span>Recordar contraseña</span> -->
                 <button type="submit" class="submit-btn" id="login-form">Ingresar</button>
                 <div class="social-icons">
-                    <img src="/imagenes/fbl.png" alt="" id="facebookLogin">
-                    <img src="/imagenes/gl.png" alt="" id="googleLogin">
-                    <img src="/imagenes/igl.png" alt="" id="logout">
+                    <img src="../img/fbl.png" alt="" id="facebookLogin">
+                    <img src="../img/gl.png" alt="" id="googleLogin">
+                    <img src="../img/igl.png" style="display: none;"  alt="" id="logout">
                 </div>
             </form>
 
@@ -43,7 +57,7 @@
                 <input id="signup-username" type="text" class="input-field" placeholder="Nombre de Usuario" required>
                 <input id="signup-email" type="email" class="input-field" placeholder="Correo electrónico" required>
                 <input id="signup-password" type="password" class="input-field" placeholder="Contraseña" required>
-                <input type="checkbox" class="check-box"><span>Acepto los términos y condiciones</span>
+                <!-- <input type="checkbox" class="check-box"><span>Acepto los términos y condiciones</span> -->
                 <button type="submit" class="submit-btn" id="signup-form">Registrar</button>
 
             </form>
@@ -77,6 +91,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
     <!-- Don't change the format for any other products. -->
     <!-- etc. -->
+
+          <!-- TOAST -->
+  <script src="../js/toast.js" defer></script>
 
     <script src="../js/sweetalert2/sweetalert2.min.js"></script>
     <script src="../js/login.js"></script>

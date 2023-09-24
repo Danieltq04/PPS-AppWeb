@@ -90,7 +90,7 @@ logout.addEventListener("click", (e) => {
 
     sessionStorage.removeItem('userSave');
 
-    // location.reload();
+    location.reload();
   });
 });
 
@@ -106,8 +106,8 @@ window.addEventListener("load", () => {
     loggedUser.innerHTML = `<label class="logged-user">${saveUserStorage.username}</label>`;
     logueado.classList.add("loggerprint");
     modalContent.innerHTML = `
-            <p><span class="txt_user">Usuario: </span>${saveUserStorage.username}</p>
-            <p><span class="txt_user">Email: </span>${saveUserStorage.email}</p>
+            <p>${saveUserStorage.username}</p>
+            <p>${saveUserStorage.email}</p>
     `
   } else {
     ingresar.style.display = "block";
@@ -130,7 +130,6 @@ const loginCheck = (user) => {
 
   } else {
     console.log("El usuario no está logueado")
-    window.location.href = "../html/login.html";
   }
 };
 
@@ -192,7 +191,7 @@ auth.onAuthStateChanged((user) => {
   } else {
     console.log("signout");
     loginCheck(user);
-    // window.location.href = "../index.html";
+    window.location.href = "../index.html";
   }
 });
 
@@ -239,65 +238,9 @@ function CargarDatosDeApplication(_estado_sanitizante, _base_co2, _base_ozono, _
   estado_extractor = _estado_extractor;
 
 
-  /********** Limite CO2 ************/
-  $('#limite_co2').empty();
-  var contenido = $('#limite_co2');
-  var card = `<label for="valor-co2" id="limite_co2">${base_co2}</label>`
-  contenido.append(card);
-  /********** Limite Ozono ************/
-  $('#limite_ozono').empty();
-  var contenido = $('#limite_ozono');
-  var card = `<label for="valor-ozono" id="limite_ozono">${base_ozono}</label>`
-  contenido.append(card);
-  /********** Limite Minutos ************/
-  $('#limite_minutos').empty();
-  var contenido = $('#limite_minutos');
-  var card = `<label for="valor-minutos" id="limite_minutos">${base_minutos}:00</label>`
-  contenido.append(card);
 
-
-
-  $('.btn-activar').empty();
-  var contenido = $('.btn-activar');
-  if (estado_sanitizante == "Activado") {
-    card = `<button type="button" class="btn btn-success" id="btn_power">Activado</button>`
-  } else {
-    card = `<button type="button" class="btn btn-danger" id="btn_power">Desactivado</button>`
-  }
-  contenido.append(card);
-  btnPower = document.getElementById('btn_power');
-
-  // Agrega el evento click al botón
-  btnPower.addEventListener('click', function () {
-    power();
-  });
-
-
-  // debugger
-  if (estado_sanitizante == "Activado" && estado_detener == "1") {
-    if (detener_por_co2 == "1") {
-      divAutomatizacionCo2.style.display = 'block';
-    }
-    if (detener_por_ozono == "1") {
-      barraOzono.style.display = 'block';
-      limiteOzono.style.display = 'block';
-    }
-    if (detener_por_minutos == "1") {
-      divAutomatizacionMinutos.style.display = 'block';
-    }
-  } else {
-
-    divAutomatizacionCo2.style.display = 'none';
-
-    barraOzono.style.display = 'none';
-    limiteOzono.style.display = 'none';
-
-    divAutomatizacionMinutos.style.display = 'none';
-  }
-
-
-
-
+  
+  
 
 
   /* Configuraciones */
@@ -356,6 +299,7 @@ function CargarDatosDeApplication(_estado_sanitizante, _base_co2, _base_ozono, _
   }
 
   /* EXTRACTOR */
+  var card;
   $('.footer-extractor').empty();
   var contenido = $('.footer-extractor');
   if (estado_extractor == "1") {
@@ -390,58 +334,15 @@ function CargarDatosDelDevice(_co2, _ozono_liberado, _minutos_encendido, _monoxi
   gas_natural = _gas_natural;
   temperatura = _temperatura;
 
-  /********** CO2 ************/
-  $('.text-co2').empty();
-  var contenido = $('.text-co2');
-  var card = `<p>${co2}</p>`
-  contenido.append(card);
-  /********** Monóxido ************/
-  $('.valor-monoxido').empty();
-  var contenido = $('.valor-monoxido');
-  var card = `<p>${monoxido}<span class="unidad">ppm</span></p>`
-  contenido.append(card);
-  /********** Gas Natural ************/
-  $('.valor-gas-natural').empty();
-  var contenido = $('.valor-gas-natural');
-  var card = `<p>${gas_natural}<span class="unidad">ppm</span></p>`
-  contenido.append(card);
-  /********** Temperatura ************/
-  $('.valor-temperatura').empty();
-  var contenido = $('.valor-temperatura');
-  var card = `<p>${temperatura}º</p>`
-  contenido.append(card);
-
-
-
-  /*############################## ESTO NO ESTÁ EN LA APLICACIÓN ANDROID #########################*/
-  document.getElementById('nivel_co2').textContent = co2;
-  document.getElementById('ozono_liberado').textContent = ozono_liberado + "ppm";
-  document.getElementById('minutos_encendido').textContent = minutos_encendido;
-
-
-  /********** Rotación aguja ************/
-  // const rotacion = (((220 + 45) * co2) / 400) - 45;
-  // divAguja.style.transform = `rotate(${rotacion}deg)`;
-
-  //Hacer una validación de si es menor a 500 solamente, sinó debería alertar
-  const rotacion = (((220 + 45) * co2) / 400) - 45;
-  divAguja.style.transform = `translate(-50%, -50%) rotate(${rotacion}deg)`
-  /* Datos de apagado automático. ESTO DEBERIA SER DE LA APP FISICA */
-
   if (estado_sanitizante == "Activado" && estado_detener == "1") {
     if (detener_por_co2 == "1") {
       if (co2 <= base_co2) {
         detenerDispositivo();
-      } else {
-        divAutomatizacionCo2.style.display = 'block';
       }
     }
     if (detener_por_ozono == "1") {
       if (ozono_liberado >= base_ozono) {
         detenerDispositivo();
-      } else {
-        barraOzono.style.display = 'block';
-        limiteOzono.style.display = 'block';
       }
     }
     if (detener_por_minutos == "1") {
@@ -449,69 +350,8 @@ function CargarDatosDelDevice(_co2, _ozono_liberado, _minutos_encendido, _monoxi
       let minutoSs = minutos_encendido.toString().split(":")[0];
       if (minutoSs >= base_minutos) {
         detenerDispositivo();
-      } else {
-        divAutomatizacionMinutos.style.display = 'block';
       }
     }
-  } else {
-    // detenerReloj();
-
-    divAutomatizacionCo2.style.display = 'none';
-
-    divAutomatizacionOzono.style.display = 'none';
-    // barraOzono.style.display = 'none';
-    // limiteOzono.style.display = 'none';
-
-    divAutomatizacionMinutos.style.display = 'none';
-  }
-
-
-  /********** Button esto lo saqué... no me parece que tenga que estar acá ************/
-  // $('.btn-activar').empty();
-  // var contenido = $('.btn-activar');
-  // if (estado == "Activado") {
-  //     card = `<button type="button" class="btn btn-danger" id="logout">Desactivar</button>`
-  // } else {
-  //     card = `<button type="button" class="btn btn-success" id="logout">Activar</button>`
-  // }
-  // contenido.append(card);
-
-}
-
-
-
-function power() {
-  console.log("power")
-  let mensaje = "";
-  if (estado_sanitizante == "Desactivado") {
-    if (estado_detener == "1" && ((detener_por_co2 == "1" && base_co2 < co2) ||
-        (detener_por_ozono == "1") || (detener_por_minutos == "1"))) {
-      mensaje += "Se purificará hasta:";
-      if (detener_por_co2 == "1" && base_co2 < co2) {
-        mensaje += "\nQue el nivel del contaminante baje hasta " + base_co2 + "ppm.";
-      }
-      if (detener_por_ozono == "1") {
-        mensaje += "\nHasta liberar " + base_ozono + "ppm de ozono.";
-      }
-      if (detener_por_minutos == "1") {
-        mensaje += "\nQue transcurran " + base_minutos + " minutos.";
-      }
-    } else {
-      mensaje += "\nSe purificará hasta que se desactive manualmente.";
-    }
-    if (co2 <= base_co2) {
-      flag = false;
-    } else {
-      flag = true;
-    }
-    mensaje += "\n¿Estás seguro?";
-    alertConfirm(mensaje, true); // no se usa el flag...
-    console.log(mensaje, true);
-
-  } else {
-    mensaje += "Se detendrá la purificación. ¿Estás seguro?";
-    alertConfirm(mensaje, false);
-    console.log(mensaje, false);
   }
 
 }
@@ -537,115 +377,6 @@ function detenerDispositivo() {
   //       });
 
 }
-
-
-function alertConfirm(mensaje) {
-  Swal.fire({
-    // type: "success",
-    title: "Purificador",
-    // text: mensaje,
-    html: mensaje.replace(/\n/g, "<br>"), // Reemplaza los saltos de línea con <br> en el mensaje
-
-    showConfirmButton: true,
-    showCloseButton: true,
-    showCancelButton: true,
-    confirmButtonColor: "var(--info)",
-    confirmButtonText: '<i class="fa fa-thumbs-up"></i> Activar',
-    cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
-
-    // imageUrl: "../img/good_luck.png",
-    imageUrl: "../img/ozonizar.png",
-  }).then((result) => {
-    // console.log(result.value)
-    if (result.value) {
-      if (estado_sanitizante == "Desactivado") {
-        // startStopTapped();
-        // PararReloj();
-        cambiarEstado("Activado");
-      } else {
-        // detenerReloj();
-        cambiarEstado("Desactivado");
-      }
-
-    } else {
-      console.log("Nada, cierra el modal")
-    }
-  });
-
-}
-
-function cambiarEstado(nuevo_estado) {
-
-  console.log("cambiando estado a: " + nuevo_estado);
-  let datosAEnviar = nuevo_estado + "-" + base_co2 + "-" + base_ozono + "-" + base_minutos +
-    "-" + estado_detener + "-" + detener_por_co2 + "-" + detener_por_ozono + "-" + detener_por_minutos +
-    "-" + estado_extractor;
-
-  console.log(datosAEnviar)
-  // refApp.set(datosAEnviar)
-  //     .then(() => {
-  //         console.log('Datos enviados con éxito a Firebase Realtime Database');
-  //     })
-  //     .catch((error) => {
-  //         console.error('Error al enviar datos a Firebase:', error);
-  //     });
-
-}
-
-function detenerReloj() {
-  // resetTapped();
-}
-
-function resetTapped() {
-  // if(timerTask != null)
-  // {
-  //     timerTask.cancel();
-  //     time = 0.0;
-  //     //minutos_encendido.setText(formatTime(0,0,0));
-  //     minutos_encendido.setText(formatTime(30,59));
-  // }
-}
-
-function startStopTapped() {
-  // startTimer();
-}
-
-function startTimer() {
-  // timerTask = new TimerTask()
-  // {
-  //     @Override
-  //     public void run()
-  //     {
-  //         getActivity().runOnUiThread(new Runnable()
-  //         {
-  //             @Override
-  //             public void run()
-  //             {
-  //                 time++;
-  //                 minutos_encendido.setText(getTimerText());
-  //             }
-  //         });
-  //     }
-
-  // };
-  // timer.scheduleAtFixedRate(timerTask, 0 ,1000);
-}
-
-function getTimerText() {
-  // int rounded = (int) Math.round(time);
-
-  // int seconds = ((rounded % 86400) % 3600) % 60;
-  // int minutes = ((rounded % 86400) % 3600) / 60;
-
-  // return formatTime(seconds, minutes);
-}
-
-function formatTime(seconds, minutes) {
-  // return String.format("%02d",minutes) + ":" + String.format("%02d",seconds);
-}
-
-
-
 
 const configurationForm = document.querySelector("#save");
 
@@ -681,7 +412,6 @@ cbActivar.addEventListener('change', function () {
 });
 
 
-/* ######################################## Configuraciones ########################################  */
 
 configurationForm.addEventListener("click", (e) => {
   e.preventDefault();
@@ -702,29 +432,23 @@ configurationForm.addEventListener("click", (e) => {
   // console.log('Transcurren minutos (Checkbox):', detener_por_minutos);
   // console.log('Minutos:', base_minutos);
 
-
-
   let datosAEnviar = '';
   if (estado_detener && !detener_por_co2 && !detener_por_ozono && !detener_por_minutos) {
     console.log("Para activar la detención automática debe activar alguna opción para su detenimiento.");
-    createToast("warning", "Para activar la detención automática debe activar alguna opción para su detenimiento.")
+    createToast("success", "Para activar la detención automática debe activar alguna opción para su detenimiento.")
   } else {
     datosAEnviar = estado_sanitizante + "-" + base_co2 + "-" + base_ozono + "-" + base_minutos +
       "-" + estado_detener + "-" + detener_por_co2 + "-" + detener_por_ozono + "-" + detener_por_minutos +
       "-" + estado_extractor;
 
-      document.getElementById("close_config").click();
-
       console.log(datosAEnviar)
-      refApp.set(datosAEnviar)
-          .then(() => {
-              console.log('Datos enviados con éxito a Firebase Realtime Database');
-              createToast("success", "Las configuraciones se han guardado correctamente.")
-          })
-          .catch((error) => {
-              console.error('Error al enviar datos a Firebase:', error);
-              createToast("error", "Se ha producido un error al guardar las configuraciones.")
-          });
+      // refDev.set(datosAEnviar)
+      //     .then(() => {
+      //         console.log('Datos enviados con éxito a Firebase Realtime Database');
+      //     })
+      //     .catch((error) => {
+      //         console.error('Error al enviar datos a Firebase:', error);
+      //     });
     
     
   }
@@ -745,24 +469,13 @@ function powerExtractor() {
     "-" + estado_detener + "-" + detener_por_co2 + "-" + detener_por_ozono + "-" + detener_por_minutos +
     "-" + estado_extractor;
 
-
-    document.getElementById("close_extractor").click();
-
-  let stateText = estado_detener == 1 ? "activado" : "desactivado";
-
   console.log(datosAEnviar)
   refApp.set(datosAEnviar)
     .then(() => {
       console.log('Datos enviados con éxito a Firebase Realtime Database');
-      createToast("success", "El Extractor se ha "+stateText+" correctamente.")
     })
     .catch((error) => {
       console.error('Error al enviar datos a Firebase:', error);
-      createToast("error", "Se ha producido un error al enviar los datos.")
     });
-
-
-
-  
 }
 /* ######################################## FIN Extractor ########################################  */

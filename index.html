@@ -35,12 +35,6 @@
 <body>
   <ul class="notifications">
   </ul> 
-  <!-- <div class="buttons">
-    <button class="btn" id="success">Success</button>
-    <button class="btn" id="error">Error</button>
-    <button class="btn" id="warning">Warning</button>
-    <button class="btn" id="info">Info</button>
-  </div> -->
 
   <!-- HEADER -->
   <header>
@@ -53,10 +47,17 @@
       <nav class="main-nav">
         <ul class="menu" id="menu">
           <li class="menu__item"><label class="menu__link" data-toggle="modal" 
-            data-target="#extractorModal">Extractor de Aire</label></li>
+            data-target="#extractorModal">
+            <label class="logged-user" for="extractor">Extractor de Aire</label>
+          </label></li>
           <li class="menu__item"><label class="menu__link" data-toggle="modal"
-              data-target="#configModal">Configuraciones</label></li>
-          <li class="menu__item"><a href="./html/contacto.html" class="menu__link">Contacto</a></li>
+              data-target="#configModal">
+              <label class="logged-user" for="configuraciones">Configuraciones</label>
+            </label></li>
+          <!-- <li class="menu__item"><a href="./html/contacto.html" class="menu__link">Contacto</a></li> -->
+          <li class="menu__item"><a href="./html/contacto.html" class="menu__link">
+            <label class="logged-user" for="contacto">Contacto</label>
+          </a></li>
           <li class="menu__item ingresar"><a href="./html/login.html" class="menu__link">Ingresar</a></li>
           <li class="menu__item logueado"><label id="logged-user1" class="menu__link" data-toggle="modal"
               data-target="#perfilModal">Logueado</label></li>
@@ -69,7 +70,7 @@
 
   <main>
     <div class="conteiner">
-      <h2>Nivel CO2</h2>
+      <h2>Dióxido de Carbono</h2>
       <div class="reloj">
         <div class="aguja">
         </div>
@@ -163,8 +164,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Configuraciones</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalLabel">Apagado Automático</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_config">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -210,7 +211,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Extractor de Aire</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_extractor">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -227,9 +228,25 @@
 
 
   <footer>
-
+    <div class="container-footer">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Información de Contacto</h4>
+          <p>Nombre: Luis Daniel, Terceros Quiroz</p>
+          <p>Correo Electrónico: daniel.tq04@gmail.com</p>
+        </div>
+        <!-- <div class="col-md-6">
+          <h4>Síguenos en Redes Sociales</h4>
+          <ul class="social-icons">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
   </footer>
-
+  
 
 
   <!-- SCRIPTS -->

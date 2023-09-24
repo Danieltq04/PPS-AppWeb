@@ -4,6 +4,8 @@ var z = document.getElementById("btn");
 const socialIcons = document.querySelector(".social-icons");
 const inputGroup = document.querySelector(".input-group");
 
+
+
 function Register() {
   x.style.left = "-400px";
   y.style.left = "50px";
@@ -149,10 +151,11 @@ const signInForm = document.querySelector("#Login");
 signInForm.addEventListener("submit", (e) => {
   e.preventDefault();
   cargando();
+  // loadingAlert = cargando();
   const email = signInForm["login-email"].value;
   const password = signInForm["login-password"].value;
 
-  debugger;
+  // debugger;
   // Authenticate the User
   auth.signInWithEmailAndPassword(email, password).then((userCredential) => {
     console.log(userCredential)
@@ -164,7 +167,14 @@ signInForm.addEventListener("submit", (e) => {
     // close the modal
     //$("#signinModal").modal("hide");
 
-  });
+    createToast("success", "Ha ingresado correctamente")
+
+  })
+  .catch(err => {
+    console.log(err);
+    detenerCargando();
+    createToast("error", "Email o contraseña incorrecta, no ha sido autenticado correctamente.")
+  })
 });
 
 
@@ -270,7 +280,7 @@ facebookButton.addEventListener('click', e => {
 
 
 function saveUserStorage(_username, _email, _id) {
-  debugger
+  // debugger
   sessionStorage.setItem('userSave',
     JSON.stringify({
       username: _username,
@@ -299,3 +309,8 @@ function cargando() {
     imageUrl: "../gifs/load.gif"
   });
 }
+
+function detenerCargando() {
+  Swal.close();
+}
+
