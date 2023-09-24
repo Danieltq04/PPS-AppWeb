@@ -1,6 +1,7 @@
 *{
     margin: 0%;
     padding: 0%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 body {
     margin: 0;
@@ -14,6 +15,23 @@ body {
     height: 100vh;
     position: absolute;
     z-index: -1;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Ajusta la transparencia aquí (0.5 es semi-transparente) */
+  }
+
+.overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7; /* Ajusta la opacidad de la imagen transparente */
 }
 .bg{
     height: 100%;
@@ -37,13 +55,19 @@ body {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
 }
+.bienvenido {
+    text-align: center;
+    padding: 15px 0 0 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
 
 .button-box{
     width: 220px;
     margin: 35px auto;
     position: relative;
     /* box-shadow: 0 0 20px 9px rgb(100 199 199); */
-    box-shadow: 0 0 20px 9px rgb(228, 203, 95);
+    box-shadow: 0 0 21px 6px #64778b;
     border-radius: 30px;
 }
 
@@ -62,7 +86,8 @@ body {
     position: absolute;
     width: 110px;
     height: 100%;
-    background: linear-gradient(to right, rgb(238, 104, 15), rgb(243, 163, 13));
+    /* background: linear-gradient(to right, rgb(238, 104, 15), rgb(243, 163, 13)); */
+    background: linear-gradient(to right, var(--info), rgb(181 207 213));
     /* background: linear-gradient(to right, rgb(68,168,192), rgb(57 235 221)); */
     border-radius: 30px;
     transition: 0.5s;
@@ -82,7 +107,7 @@ body {
 }
 
 .input-group{
-    top: 140px;
+    top: 155px;
     position: absolute;
     width: 280px;
     transition: .5s;
@@ -106,7 +131,8 @@ body {
     cursor: pointer;
     display: block;
     margin: auto;
-    background: linear-gradient(to right, rgb(238, 104, 15), rgb(243, 163, 13));
+    /* background: linear-gradient(to right, rgb(238, 104, 15), rgb(243, 163, 13)); */
+    background: linear-gradient(to right, var(--info), rgb(181 207 213));
     /* background: linear-gradient(to right, rgb(68,168,192), rgb(57 235 221)); */
     border: none;
     outline: none;

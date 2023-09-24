@@ -52,7 +52,8 @@ body {
 }
 .menu__item:hover{
     /*background: rgb(216, 147, 216);*/
-    background: rgb(1, 56, 56);
+    /* background: rgb(1, 56, 56); */
+    background: var(--info);
     transition: all 0.8s;
 
 }
@@ -66,7 +67,8 @@ a:hover{
 .mostrar{
     margin-left: 0;
     z-index: 3;
-    background-color: #44A8C0;
+    /* background-color: #44A8C0; */
+    background-color: var(--info);
 }
 
 body> header{
@@ -152,6 +154,9 @@ header a.current, header a:hover {
     position: relative;
     text-decoration: none;
   }
+.txt_user{
+    font-weight: bold;
+}
 /*
 .logged-user:hover {
 }
@@ -164,7 +169,8 @@ header a.current, header a:hover {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: rgb(146, 27, 120);
+    /* background-color: rgb(146, 27, 120); */
+    background-color: var(--error);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -399,13 +405,14 @@ body{
     /* background-color: rgb(240 240 240); */
     background-color: rgb(210 206 206)
 }
-#perfilModal .modal-header{
-    background-color:  #44A8C0;
-
+.modal-header{
+    /* background-color:  #44A8C0; */
+    background-color: var(--info);
+    color: black;
 }
-#perfilModal .modal-header .close{
-    background-color:  #44A8C0;
-
+.modal-header .close{
+    /* background-color:  #44A8C0; */
+    background-color: var(--info);
 }
 
 
@@ -472,3 +479,56 @@ body{
     width: 60%;
 }
 
+
+
+
+/* ************************************************************* */
+/*                              FOOTER                           */
+/* ************************************************************* */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  .container-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Estilos para los iconos de redes sociales */
+  .social-icons {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .social-icons a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  
+  /* Estilos para la información de contacto */
+  h4 {
+    font-size: 18px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 767px) {
+    .col-md-6 {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
