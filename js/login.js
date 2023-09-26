@@ -107,14 +107,16 @@ signUpForm.addEventListener("submit", (e) => {
 
       console.log("Registrado Correctamente")
 
+      createToast("success", "Ha sido registrado correctamente")
 
       //saveUserStorage(username, telephone, email,"usuario",userCredential.user.uid)
 
       console.log(userCredential.user.uid)
 
       database.ref(userCredential.user.uid).set({
-          Application: "Desactivado-184-30-5-1-1-0-0-0",
-          Device: "181-10-1-40-41-42",
+          Application: "Desactivado-180-10-5-1-1-0-0-0",
+          Device: "",
+          // Device: "181-10-1-40-41-42",
           Username: username
         })
         .then(() => {
@@ -125,7 +127,12 @@ signUpForm.addEventListener("submit", (e) => {
         });
 
 
-    });
+    })
+    .catch(err => {
+      console.log(err);
+      detenerCargando();
+      createToast("error", "No se ha podido registrar correctamente, compruebe son completados correctamente.")
+    })
 });
 
 /* ************************************************************* */

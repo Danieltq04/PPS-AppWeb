@@ -175,15 +175,24 @@ auth.onAuthStateChanged((user) => {
     refDev.on('value', (snapshot) => {
       const valor = snapshot.val();
       console.log(valor);
-      var partes = valor.split("-");
 
-      var var1 = partes[0];
-      var var2 = partes[1];
-      var var3 = partes[2];
-      var var4 = partes[3];
-      var var5 = partes[4];
-      var var6 = partes[5];
-      CargarDatosDelDevice(var1, var2, var3, var4, var5, var6);
+      if(valor){
+        var partes = valor.split("-");
+
+        var var1 = partes[0];
+        var var2 = partes[1];
+        var var3 = partes[2];
+        var var4 = partes[3];
+        var var5 = partes[4];
+        var var6 = partes[5];
+        CargarDatosDelDevice(var1, var2, var3, var4, var5, var6);
+      }
+      else{
+        console.log("No entra")
+        createToast("error", "Conecte el dispositivo.")
+
+      }
+
     }, (error) => {
       console.error("Error al escuchar cambios en 'Device':", error);
     });

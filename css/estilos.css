@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: sticky;
 }
 
 .reloj {
@@ -298,4 +299,36 @@ main{
 
 .unidad{
     font-size: 1rem;
+}
+
+
+
+
+
+/* */
+.background {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: calc(100% - 11vh);
+    z-index: -1;
+}
+
+.overlay {
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    height: calc(100% - 11vh);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-image {
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    height: calc(100% - 11vh);
+    /* calc(100% - 11vh) */
+    opacity: 0.85;
 }
