@@ -8,6 +8,7 @@
     align-items: center;
     flex-direction: column;
     position: sticky;
+    padding-bottom: 10px;
 }
 
 .reloj {
@@ -151,6 +152,7 @@ h3{
 
 main{
     margin-top: 11vh;
+    position: relative;
 }
 
 
@@ -310,7 +312,9 @@ main{
     position: absolute;
     object-fit: cover;
     width: 100%;
-    height: calc(100% - 11vh);
+    /* height: calc(100% - 11vh); */
+    /* height: calc(var(--altura-main) - 11vh); */
+    height: 100%;
     z-index: -1;
 }
 
@@ -319,7 +323,9 @@ main{
     /* top: 0;
     left: 0; */
     width: 100%;
-    height: calc(100% - 11vh);
+    /* height: calc(100% - 11vh); */
+    height: 100%;
+
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -328,7 +334,9 @@ main{
     /* top: 0;
     left: 0; */
     width: 100%;
-    height: calc(100% - 11vh);
+    /* height: calc(100% - 11vh); */
+    height: 100%;
+
     /* calc(100% - 11vh) */
     opacity: 0.85;
 }
