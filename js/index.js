@@ -55,6 +55,9 @@ let btnPower;
 let btnPowerExtractor;
 
 
+// const mainElement = document.querySelector('main');
+// const alturaMain = mainElement.clientHeight + 'px';
+// document.documentElement.style.setProperty('--altura-main', alturaMain);
 
 /* ************************************************************* */
 /*                          SCRIPT FIREBASE                      */
@@ -273,6 +276,7 @@ function CargarDatosDeApplication(_estado_sanitizante, _base_co2, _base_ozono, _
   } else {
     card = `<button type="button" class="btn btn-danger" id="btn_power">Desactivado</button>`
   }
+
   contenido.append(card);
   btnPower = document.getElementById('btn_power');
 
@@ -288,8 +292,8 @@ function CargarDatosDeApplication(_estado_sanitizante, _base_co2, _base_ozono, _
       divAutomatizacionCo2.style.display = 'block';
     }
     if (detener_por_ozono == "1") {
-      barraOzono.style.display = 'block';
-      limiteOzono.style.display = 'block';
+      barraOzono.style.display = '';
+      limiteOzono.style.display = '';
     }
     if (detener_por_minutos == "1") {
       divAutomatizacionMinutos.style.display = 'block';
@@ -548,7 +552,17 @@ function detenerDispositivo() {
 }
 
 
-function alertConfirm(mensaje) {
+function alertConfirm(mensaje, state) {
+
+  let buttonText;
+  if(state) {
+    buttonText = '<i class="fa fa-thumbs-up"></i> Activar'
+  }
+  else{
+    buttonText ='<i class="fa fa-thumbs-up"></i> Desactivar'
+  }
+
+
   Swal.fire({
     // type: "success",
     title: "Purificador",
@@ -559,7 +573,8 @@ function alertConfirm(mensaje) {
     showCloseButton: true,
     showCancelButton: true,
     confirmButtonColor: "var(--info)",
-    confirmButtonText: '<i class="fa fa-thumbs-up"></i> Activar',
+    // confirmButtonText: '<i class="fa fa-thumbs-up"></i> Activar',
+    confirmButtonText: buttonText,
     cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
 
     // imageUrl: "../img/good_luck.png",
@@ -591,68 +606,17 @@ function cambiarEstado(nuevo_estado) {
     "-" + estado_extractor;
 
   console.log(datosAEnviar)
-  // refApp.set(datosAEnviar)
-  //     .then(() => {
-  //         console.log('Datos enviados con éxito a Firebase Realtime Database');
-  //     })
-  //     .catch((error) => {
-  //         console.error('Error al enviar datos a Firebase:', error);
-  //     });
+  refApp.set(datosAEnviar)
+      .then(() => {
+          console.log('El Purificador se ha "+nuevo_estado+" correctamente.');
+          createToast("success", "El Purificador se ha "+nuevo_estado+" correctamente.")
+        })
+      .catch((error) => {
+          console.error('Error al enviar datos a Firebase:', error);
+          createToast("error", "Se ha producido un error al guardar las configuraciones.")
+        });
 
 }
-
-function detenerReloj() {
-  // resetTapped();
-}
-
-function resetTapped() {
-  // if(timerTask != null)
-  // {
-  //     timerTask.cancel();
-  //     time = 0.0;
-  //     //minutos_encendido.setText(formatTime(0,0,0));
-  //     minutos_encendido.setText(formatTime(30,59));
-  // }
-}
-
-function startStopTapped() {
-  // startTimer();
-}
-
-function startTimer() {
-  // timerTask = new TimerTask()
-  // {
-  //     @Override
-  //     public void run()
-  //     {
-  //         getActivity().runOnUiThread(new Runnable()
-  //         {
-  //             @Override
-  //             public void run()
-  //             {
-  //                 time++;
-  //                 minutos_encendido.setText(getTimerText());
-  //             }
-  //         });
-  //     }
-
-  // };
-  // timer.scheduleAtFixedRate(timerTask, 0 ,1000);
-}
-
-function getTimerText() {
-  // int rounded = (int) Math.round(time);
-
-  // int seconds = ((rounded % 86400) % 3600) % 60;
-  // int minutes = ((rounded % 86400) % 3600) / 60;
-
-  // return formatTime(seconds, minutes);
-}
-
-function formatTime(seconds, minutes) {
-  // return String.format("%02d",minutes) + ":" + String.format("%02d",seconds);
-}
-
 
 
 
@@ -727,7 +691,7 @@ configurationForm.addEventListener("click", (e) => {
       console.log(datosAEnviar)
       refApp.set(datosAEnviar)
           .then(() => {
-              console.log('Datos enviados con éxito a Firebase Realtime Database');
+              console.log('Las configuraciones se han guardado correctamente.');
               createToast("success", "Las configuraciones se han guardado correctamente.")
           })
           .catch((error) => {
@@ -762,7 +726,7 @@ function powerExtractor() {
   console.log(datosAEnviar)
   refApp.set(datosAEnviar)
     .then(() => {
-      console.log('Datos enviados con éxito a Firebase Realtime Database');
+      console.log('El Extractor se ha "+stateText+" correctamente.');
       createToast("success", "El Extractor se ha "+stateText+" correctamente.")
     })
     .catch((error) => {
