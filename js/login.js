@@ -105,9 +105,7 @@ signUpForm.addEventListener("submit", (e) => {
       // close the modal
       //$("#signupModal").modal("hide");
 
-      console.log("Registrado Correctamente")
 
-      createToast("success", "Ha sido registrado correctamente")
 
       //saveUserStorage(username, telephone, email,"usuario",userCredential.user.uid)
 
@@ -120,6 +118,10 @@ signUpForm.addEventListener("submit", (e) => {
           Username: username
         })
         .then(() => {
+          console.log("Registrado Correctamente")
+
+          createToast("success", "Ha sido registrado correctamente")
+
           console.log('Registro agregado con éxito.');
         })
         .catch((error) => {
@@ -199,39 +201,39 @@ googleButton.addEventListener("click", (e) => {
   //$("#signinModal").modal("hide");
 
   const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider).then((result) => {
-      /*console.log(result.user);
-      console.log(result.user.uid);
-      console.log((result.user.displayName.split(" "))[0]);
-      console.log(result.user.displayName);
-      console.log(result.user.phoneNumber);
-      console.log(result.user.email);*/
+  auth.signInWithPopup(provider).then((userCredential) => {
       console.log("google sign in, redirect");
-      //window.location.href = "./Curso1.html";
-
-      // saveUserStorage((result.user.displayName.split(" "))[0],
-      // (result.user.phoneNumber)? result.user.phoneNumber: "",
-      // result.user.email,"usuario",result.user.uid)
 
 
-      fs.collection("usuarios").doc(result.user.uid).set({
-          username: (result.user.displayName.split(" "))[0],
-          telefono: (result.user.phoneNumber) ? result.user.phoneNumber : "",
-          email: result.user.email,
-          rol: "usuario",
-          id: result.user.uid
+
+      //saveUserStorage(username, telephone, email,"usuario",userCredential.user.uid)
+      console.log(userCredential);
+      // console.log(userCredential.user.uid)
+
+      database.ref(userCredential.user.uid).set({
+          Application: "Desactivado-180-10-5-1-1-0-0-0",
+          Device: "",
+          // Device: "181-10-1-40-41-42",
+          Username: userCredential.user.displayName
         })
         .then(() => {
-          console.log("Document successfully written!");
+          console.log("Registrado Correctamente")
+
+          createToast("success", "Ha sido registrado correctamente")
+    
+          console.log('Registro agregado con éxito.');
         })
         .catch((error) => {
-          console.error("Error writing document: ", error);
+          console.error('Error al agregar el registro:', error);
         });
     })
     .catch(err => {
       console.log(err);
+      detenerCargando();
+      createToast("error", "No se ha podido registrar correctamente, compruebe son completados correctamente.")
     })
 });
+
 
 /* ************************************************************* */
 /*                      LOGIN WITH FACEBOOK                     */
