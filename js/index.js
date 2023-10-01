@@ -116,7 +116,7 @@ window.addEventListener("load", () => {
     ingresar.style.display = "block";
     logueado.style.display = "none";
     logueado.classList.remove("loggerprint");
-    window.location.href = "../html/login.html";
+    window.location.href = "./html/login.html";
   }
 });
 
@@ -133,7 +133,7 @@ const loginCheck = (user) => {
 
   } else {
     console.log("El usuario no está logueado")
-    window.location.href = "../html/login.html";
+    window.location.href = "./html/login.html";
   }
 };
 
